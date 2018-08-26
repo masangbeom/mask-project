@@ -1,17 +1,60 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar [style.background-color]="colorBG">
+    <ion-title><span style="color: #ffffff">금정구 미세먼지농도 - {{dustTimeNow.dust_state_text}}</span></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-grid>
+    <ion-row [@animateStagger]="{value:'50'}">
+      <ion-col>
+        <mat-card class="example-card"
+                  [@animate]="{value:'*',params:{y:'100%'}}">
+          <mat-card-header>
+            <mat-card-title>탐사 황사방역용 마스크 3단 대형 KF94</mat-card-title>
+          </mat-card-header>
+          <img style="width: 100%" src="http://thumbnail11.coupangcdn.com/thumbnails/remote/q89/image/product/content/vendorItem/2018/04/02/238087138/3325fb1c-73c2-4a0a-a6fe-aee4e52f854f.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>자세히 보기</button>
+            <button mat-button>구매하기</button>
+          </mat-card-actions>
+        </mat-card>
+      </ion-col>
+      <ion-col>
+        <mat-card class="example-card"
+                  [@animate]="{value:'*',params:{y:'100%'}}">
+          <mat-card-header>
+            <mat-card-title>탐사 황사방역용 마스크 3단 대형 KF94</mat-card-title>
+          </mat-card-header>
+          <img style="width: 100%" src="http://thumbnail11.coupangcdn.com/thumbnails/remote/q89/image/product/content/vendorItem/2018/04/02/238087138/3325fb1c-73c2-4a0a-a6fe-aee4e52f854f.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>자세히 보기</button>
+            <button mat-button>구매하기</button>
+          </mat-card-actions>
+        </mat-card>
+      </ion-col>
+      <ion-col>
+        <mat-card class="example-card"
+                  [@animate]="{value:'*',params:{y:'100%'}}">
+          <mat-card-header>
+            <mat-card-title>탐사 황사방역용 마스크 3단 대형 KF94</mat-card-title>
+          </mat-card-header>
+          <img style="width: 100%" src="http://thumbnail11.coupangcdn.com/thumbnails/remote/q89/image/product/content/vendorItem/2018/04/02/238087138/3325fb1c-73c2-4a0a-a6fe-aee4e52f854f.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>자세히 보기</button>
+            <button mat-button>구매하기</button>
+          </mat-card-actions>
+        </mat-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

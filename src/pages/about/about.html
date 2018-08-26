@@ -1,11 +1,29 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
+  <ion-navbar [style.background-color]="colorBG">
+    <ion-title><span style="color: #ffffff">금정구 미세먼지정보 - {{dustTimeNow.dust_state_text}}</span></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <mat-card class="dust-chart-card"
+            [@animate]="{value:'*',params:{y:'100%'}}">
+    <mat-card-header>
+      <mat-card-title>{{today}} 미세먼지 농도 정보 {{chartRange}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="height: 500px">
+      <ngx-charts-bar-vertical-stacked #ngxChart
+                                       [scheme]="dustChart.scheme"
+                                       [results]="dustChartData.mainChart[chartRange]"
+                                       [gradient]="dustChart.gradient"
+                                       [xAxis]="dustChart.xAxis"
+                                       [yAxis]="dustChart.yAxis"
+                                       [legend]="dustChart.legend"
+                                       [showXAxisLabel]="dustChart.showXAxisLabel"
+                                       [showYAxisLabel]="dustChart.showYAxisLabel"
+                                       [xAxisLabel]="dustChart.xAxisLabel"
+                                       [yAxisLabel]="dustChart.yAxisLabel"
+                                       (select)="dustChart.onSelect($event)">
+      </ngx-charts-bar-vertical-stacked>
+    </mat-card-content>
+  </mat-card>
 </ion-content>
