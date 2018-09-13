@@ -5,12 +5,11 @@
 </ion-header>
 
 <ion-content padding>
-  <mat-card class="dust-chart-card"
-            [@animate]="{value:'*',params:{y:'100%'}}">
+  <mat-card class="dust-chart-card">
     <mat-card-header>
       <mat-card-title>{{today}} 미세먼지 농도 정보 {{chartRange}}</mat-card-title>
     </mat-card-header>
-    <mat-card-content style="height: 500px">
+    <mat-card-content style="height: 400px">
       <ngx-charts-bar-vertical-stacked #ngxChart
                                        [scheme]="dustChart.scheme"
                                        [results]="dustChartData.mainChart[chartRange]"
@@ -24,6 +23,19 @@
                                        [yAxisLabel]="dustChart.yAxisLabel"
                                        (select)="dustChart.onSelect($event)">
       </ngx-charts-bar-vertical-stacked>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="dust-chart-card">
+    <mat-card-header>
+      <mat-card-title>이번달 미세먼지 농도별 비율 (수치합계)</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="height: 400px">
+      <ngx-charts-pie-grid
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="single"
+        (select)="onSelect($event)">
+      </ngx-charts-pie-grid>
     </mat-card-content>
   </mat-card>
 </ion-content>

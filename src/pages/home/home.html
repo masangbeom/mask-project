@@ -1,57 +1,93 @@
 <ion-header>
   <ion-navbar [style.background-color]="colorBG">
-    <ion-title><span style="color: #ffffff">금정구 미세먼지농도 - {{dustTimeNow.dust_state_text}}</span></ion-title>
+    <ion-title><span style="color: #ffffff">마스크 목록 (금정구 미세먼지농도 - {{dustTimeNow.dust_state_text}})</span></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid>
-    <ion-row [@animateStagger]="{value:'50'}">
+    <ion-row>
       <ion-col>
-        <mat-card class="example-card"
-                  [@animate]="{value:'*',params:{y:'100%'}}">
+        <mat-card class="example-card">
           <mat-card-header>
-            <mat-card-title>탐사 황사방역용 마스크 3단 대형 KF94</mat-card-title>
+            <mat-card-title>KF80 마스크</mat-card-title>
           </mat-card-header>
-          <img style="width: 100%" src="http://thumbnail11.coupangcdn.com/thumbnails/remote/q89/image/product/content/vendorItem/2018/04/02/238087138/3325fb1c-73c2-4a0a-a6fe-aee4e52f854f.jpg" alt="Photo of a Shiba Inu">
+          <img style="width: 100%; height: 400px" src="http://ynkshop.com/web/product/big/ynkstyle_98.jpg" alt="Photo of a Shiba Inu">
           <mat-card-content>
-
+            <ion-item no-lines *ngIf="dustTimeNow.dust_state">
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 8 || dustTimeNow.dust_state === 7">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(2000 / 100) * 25}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 6 || dustTimeNow.dust_state === 5">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(2000 / 100) * 50}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 4 || dustTimeNow.dust_state === 3">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(2000 / 100) * 75}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 2 || dustTimeNow.dust_state === 1">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(2000 / 100) * 100}}원</h1></ion-badge>
+            </ion-item>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>자세히 보기</button>
-            <button mat-button>구매하기</button>
+            <button mat-button (click)="modalOpen(1)">자세히 보기 <ion-icon name="eye"></ion-icon></button>
+            <button mat-button (click)="showPrompt(1)">구매하기 <ion-icon name="card"></ion-icon></button>
           </mat-card-actions>
         </mat-card>
       </ion-col>
       <ion-col>
-        <mat-card class="example-card"
-                  [@animate]="{value:'*',params:{y:'100%'}}">
+        <mat-card class="example-card">
           <mat-card-header>
-            <mat-card-title>탐사 황사방역용 마스크 3단 대형 KF94</mat-card-title>
+            <mat-card-title>KF94 마스크</mat-card-title>
           </mat-card-header>
-          <img style="width: 100%" src="http://thumbnail11.coupangcdn.com/thumbnails/remote/q89/image/product/content/vendorItem/2018/04/02/238087138/3325fb1c-73c2-4a0a-a6fe-aee4e52f854f.jpg" alt="Photo of a Shiba Inu">
+          <img style="width: 100%; height: 400px" src="http://preppershop.co.kr/shopimages/initiating/003001000010.jpg?1458628499" alt="Photo of a Shiba Inu">
           <mat-card-content>
-
+            <ion-item no-lines *ngIf="dustTimeNow.dust_state">
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 8 || dustTimeNow.dust_state === 7">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(4000 / 100) * 25}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 6 || dustTimeNow.dust_state === 5">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(4000 / 100) * 50}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 4 || dustTimeNow.dust_state === 3">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(4000 / 100) * 75}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 2 || dustTimeNow.dust_state === 1">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(4000 / 100) * 100}}원</h1></ion-badge>
+            </ion-item>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>자세히 보기</button>
-            <button mat-button>구매하기</button>
+            <button mat-button (click)="modalOpen(2)">자세히 보기 <ion-icon name="eye"></ion-icon></button>
+            <button mat-button (click)="showPrompt(2)">구매하기 <ion-icon name="card"></ion-icon></button>
           </mat-card-actions>
         </mat-card>
       </ion-col>
       <ion-col>
-        <mat-card class="example-card"
-                  [@animate]="{value:'*',params:{y:'100%'}}">
+        <mat-card class="example-card">
           <mat-card-header>
-            <mat-card-title>탐사 황사방역용 마스크 3단 대형 KF94</mat-card-title>
+            <mat-card-title>KF99 마스크</mat-card-title>
           </mat-card-header>
-          <img style="width: 100%" src="http://thumbnail11.coupangcdn.com/thumbnails/remote/q89/image/product/content/vendorItem/2018/04/02/238087138/3325fb1c-73c2-4a0a-a6fe-aee4e52f854f.jpg" alt="Photo of a Shiba Inu">
+          <img style="width: 100%; height: 400px" src="http://www.irontool.net/shop/data/goods/1522285172716m0.jpg" alt="Photo of a Shiba Inu">
           <mat-card-content>
-
+            <ion-item no-lines *ngIf="dustTimeNow.dust_state">
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 8 || dustTimeNow.dust_state === 7">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(6000 / 100) * 25}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 6 || dustTimeNow.dust_state === 5">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(6000 / 100) * 50}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 4 || dustTimeNow.dust_state === 3">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(6000 / 100) * 75}}원</h1></ion-badge>
+              <ion-badge [style.background-color]="dustTimeNow.dust_state_color"
+                         item-end *ngIf="dustTimeNow.dust_state === 2 || dustTimeNow.dust_state === 1">
+                <h1 style="margin-top: 3px; font-weight: bold">가격 : {{(6000 / 100) * 100}}원</h1></ion-badge>
+            </ion-item>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>자세히 보기</button>
-            <button mat-button>구매하기</button>
+            <button mat-button (click)="modalOpen(3)">자세히 보기 <ion-icon name="eye"></ion-icon></button>
+            <button mat-button (click)="showPrompt(3)">구매하기 <ion-icon name="card"></ion-icon></button>
           </mat-card-actions>
         </mat-card>
       </ion-col>

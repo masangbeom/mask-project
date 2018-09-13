@@ -288,19 +288,6 @@ export class AboutPage {
           ]
         },
         {
-          'name': '7시',
-          'series': [
-            {
-              'name': '초 미세먼지 농도',
-              'value': 0
-            },
-            {
-              'name': '미세먼지 농도',
-              'value': 0
-            }
-          ]
-        },
-        {
           'name': '8시',
           'series': [
             {
@@ -369,9 +356,48 @@ export class AboutPage {
     }
   };
 
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
+  single = [
+    {
+      "name": "최고 ~ 좋음",
+      "value": 894
+    },
+    {
+      "name": "양호 ~ 보통",
+      "value": 500
+    },
+    {
+      "name": "나쁨 ~ 최악",
+      "value": 720
+    }
+  ];
+
+
 
   constructor(public navCtrl: NavController, private readonly httpProvider: HttpProvider
   ) {
+    this.dustChart = {
+      xAxis: true,
+      yAxis: true,
+      gradient: true,
+      legend: false,
+      showXAxisLabel: false,
+      xAxisLabel: '시간',
+      showYAxisLabel: false,
+      yAxisLabel: '농도',
+      scheme: {
+        domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
+      },
+      onSelect: (ev) => {
+        console.log(ev);
+      }
+    };
+  }
+
+  ionViewWillEnter() {
     this.setDust();
     this.dustChart = {
       xAxis: true,
@@ -536,6 +562,10 @@ export class AboutPage {
           if (this.dustTimeNow === undefined) {
             this.dustTimeNow = this.dustListDay
               .filter(dust => dust.dust_date_time === (timeNow - 1))[0];
+          }
+          if (this.dustTimeNow === undefined) {
+            this.dustTimeNow = this.dustListDay
+              .filter(dust => dust.dust_date_time === (timeNow - 2))[0];
           }
           this.colorBG = this.dustTimeNow.dust_state_color;
         }

@@ -6,7 +6,7 @@ import {MyApp} from './app.component';
 
 import {AboutPage} from '../pages/about/about';
 import {ContactPage} from '../pages/contact/contact';
-import {HomePage} from '../pages/home/home';
+import {HomePage, ModalOneMask, ModalThreeMask, ModalTwoMask} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 
 import {
@@ -20,6 +20,9 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import { HttpProvider } from '../providers/http/http';
 import {HttpClientModule} from "@angular/common/http";
+import { Camera } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import {BluetoothSerial} from "@ionic-native/bluetooth-serial";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import {HttpClientModule} from "@angular/common/http";
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ModalOneMask,
+    ModalTwoMask,
+    ModalThreeMask
   ],
   imports: [
     BrowserModule,
@@ -46,10 +52,16 @@ import {HttpClientModule} from "@angular/common/http";
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ModalOneMask,
+    ModalTwoMask,
+    ModalThreeMask
   ],
   providers: [
     StatusBar,
+    BarcodeScanner,
+    Camera,
+    BluetoothSerial,
     SplashScreen,
     HttpClientModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
