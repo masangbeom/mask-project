@@ -3,6 +3,7 @@ import {NavController} from 'ionic-angular';
 import {maskAnimations} from "../../theme/animation";
 import {HttpProvider} from "../../providers/http/http";
 import {IDust} from "../../models/iDust";
+import {WeatherSettings, TemperatureScale, ForecastMode, WeatherLayout} from 'angular-weather-widget';
 import * as moment from 'moment';
 
 @Component({
@@ -12,6 +13,24 @@ import * as moment from 'moment';
 })
 export class AboutPage {
   @ViewChild('ngxChart') private _chart;
+
+  settings: WeatherSettings = {
+    location: {
+      cityName: 'Busan'
+    },
+    backgroundColor: '#ffffff',
+    color: '#000000',
+    width: '100%',
+    height: 'auto',
+    showWind: false,
+    scale: TemperatureScale.CELCIUS,
+    forecastMode: ForecastMode.DETAILED,
+    showDetails: false,
+    showForecast: true,
+    layout: WeatherLayout.WIDE,
+    language: 'kr'
+  };
+
   today = moment().format('YYYY-MM-DD');
   chartRange: string;
   colorBG = '#000000';
@@ -376,9 +395,9 @@ export class AboutPage {
   ];
 
 
-
   constructor(public navCtrl: NavController, private readonly httpProvider: HttpProvider
   ) {
+    this.setDust();
     this.dustChart = {
       xAxis: true,
       yAxis: true,
@@ -398,7 +417,6 @@ export class AboutPage {
   }
 
   ionViewWillEnter() {
-    this.setDust();
     this.dustChart = {
       xAxis: true,
       yAxis: true,
@@ -554,7 +572,6 @@ export class AboutPage {
               }
             }
           }
-          console.log(this.dustChartData.mainChart);
           this._chart.results = this.dustChartData.mainChart[this.chartRange];
           // console.log(this._chart.results);
           this.dustTimeNow = this.dustListDay
@@ -567,6 +584,7 @@ export class AboutPage {
             this.dustTimeNow = this.dustListDay
               .filter(dust => dust.dust_date_time === (timeNow - 2))[0];
           }
+          this.settings.backgroundColor = this.dustTimeNow.dust_state_color;
           this.colorBG = this.dustTimeNow.dust_state_color;
         }
       );

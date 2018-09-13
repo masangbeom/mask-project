@@ -6,6 +6,10 @@
 
 <ion-content padding>
   <mat-card class="dust-chart-card">
+    <mat-card-title>기상정보</mat-card-title>
+    <weather-widget class="dust-chart-card" [settings]="settings"></weather-widget>
+  </mat-card>
+  <mat-card class="dust-chart-card">
     <mat-card-header>
       <mat-card-title>{{today}} 미세먼지 농도 정보 {{chartRange}}</mat-card-title>
     </mat-card-header>
@@ -34,7 +38,7 @@
         [view]="view"
         [scheme]="colorScheme"
         [results]="single"
-        (select)="onSelect($event)">
+      >
       </ngx-charts-pie-grid>
     </mat-card-content>
   </mat-card>

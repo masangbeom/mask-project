@@ -23,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { Camera } from '@ionic-native/camera';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {BluetoothSerial} from "@ionic-native/bluetooth-serial";
+import { AngularWeatherWidgetModule, WeatherApiName } from 'angular-weather-widget';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,11 @@ import {BluetoothSerial} from "@ionic-native/bluetooth-serial";
     ChartsModule,
     MatCardModule,
     MatButtonModule,
-
+    AngularWeatherWidgetModule.forRoot({
+      key: '3efbf515295a9a479474bdaece5e47fb',
+      name: WeatherApiName.OPEN_WEATHER_MAP,
+      baseUrl: 'http://api.openweathermap.org/data/2.5'
+    }),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

@@ -48,7 +48,7 @@ export class HomePage implements OnInit {
               private bluetoothSerial: BluetoothSerial, public alertCtrl: AlertController, private barcodeScanner: BarcodeScanner,
               public modalCtrl: ModalController
   ) {
-    // this.bluetoothSerial.connect('00:18:E5:04:14:5B').subscribe((this.success, this.fail));
+    this.bluetoothSerial.connect('00:18:E5:04:14:5B').subscribe((this.success, this.fail));
   }
 
 
@@ -78,27 +78,16 @@ export class HomePage implements OnInit {
       }
       this.colorBG = this.dustTimeNow.dust_state_color;
       setInterval(() => {
-        const sendData: number = Math.floor(Math.random() * 4) + 1;
-        switch (sendData) {
-          case 1: {
-            this.bluetoothSerial.write('q').then();
-            break;
-          }
-          case 2: {
-            this.bluetoothSerial.write('w').then();
-            break;
-          }
-          case 3: {
-            this.bluetoothSerial.write('e').then();
-            break;
-          }
-          case 4: {
-            this.bluetoothSerial.write('r').then();
-            break;
-          }
+        if(this.dustTimeNow.dust_state === 8 || this.dustTimeNow.dust_state === 7) {
+          this.bluetoothSerial.write('r').then();
+        } else if(this.dustTimeNow.dust_state === 6 || this.dustTimeNow.dust_state === 5) {
+          this.bluetoothSerial.write('e').then();
+        } else if(this.dustTimeNow.dust_state === 4 || this.dustTimeNow.dust_state === 3) {
+          this.bluetoothSerial.write('w').then();
+        } else if(this.dustTimeNow.dust_state === 2 || this.dustTimeNow.dust_state === 1) {
+          this.bluetoothSerial.write('q').then();
         }
-        console.log(sendData);
-      }, 60000)
+      }, 360000);
     });
   }
 
